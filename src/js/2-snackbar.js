@@ -1,45 +1,38 @@
-document.querySelector('.form').addEventListener('submit', (event) => {
-    event.preventDefault();
-  
-    const form = event.currentTarget;
-    const delayInput = form.elements.delay.value;
-    const state = form.elements.state.value;
-  
-    const delay = parseInt(delayInput, 10);
-  
-    if (isNaN(delay) || delay <= 0) {
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
+
+const form = document.querySelector('.form');
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault(); 
+
+  const formData = new FormData(form); 
+  const delay = parseInt(formData.get('delay'), 10); 
+  const state = formData.get('state'); 
+
+  createPromise(delay, state)
+    .then((resolvedDelay) => {
+      iziToast.success({
+        title: 'Success',
+        message: `✅ Fulfilled promise in ${resolvedDelay}ms`,
+      });
+    })
+    .catch((rejectedDelay) => {
       iziToast.error({
         title: 'Error',
-        message: 'Please enter a valid positive delay in milliseconds.',
+        message: `❌ Rejected promise in ${rejectedDelay}ms`,
       });
-      return;
-    }
-  
-    createPromise(delay, state)
-      .then((message) => {
-        iziToast.success({
-          title: 'Success',
-          message,
-        });
-      })
-      .catch((message) => {
-        iziToast.error({
-          title: 'Error',
-          message,
-        });
-      });
-  });
-
-  function createPromise(delay, state) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const message = `Promise ${state} in ${delay}ms`;
-        if (state === 'fulfilled') {
-          resolve(`✅ ${message}`);
-        } else {
-          reject(`❌ ${message}`);
-        }
-      }, delay);
     });
-  }
-  
+});
+
+function createPromise(delay, state) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (state === 'fulfilled') {
+        resolve(delay); 
+      } else {
+        reject(delay); 
+      }
+    }, delay);
+  });
+}

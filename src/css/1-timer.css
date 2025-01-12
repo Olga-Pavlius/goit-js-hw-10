@@ -22,7 +22,14 @@ input {
     display: flex;
 }
 
-button {
+.date-time-container {
+  display: flex; 
+  align-items: center; 
+  justify-content: flex-start; 
+  gap: 8px; 
+}
+
+.date-time-btn {
     display: flex;
     color: #fff;
     width: 75px;
@@ -35,8 +42,11 @@ button {
     padding: 8px 16px;
     border: none;
     background-color: #cfcfcf;
-    margin-left: 8px;
-    margin-bottom: 32px;
+}
+
+.date-time-btn:disabled {
+  color: black;
+  cursor: not-allowed;
 }
 
 .timer {

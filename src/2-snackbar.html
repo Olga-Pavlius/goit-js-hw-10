@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Promise Generator</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
-  <link rel="stylesheet" href="./css/2-snackbar.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css" />
+  <link rel="stylesheet" href="./css/2-snackbar.css"/>
 </head>
 <body>
     <a class="back-link" href="./index.html">Go back</a>
+    <h1 class="main-title">Promise generator</h1>
   <form class="form">
     <label class="form-lable">
       Delay (ms)
@@ -17,22 +18,19 @@
 
     <fieldset class="form-fieldset">
       <legend>State</legend>
-      <div class="lable-fieldeset">
-        <label>
-            <input type="radio" name="state" value="fulfilled" required />
-            Fulfilled
-          </label>
-          <label>
-            <input type="radio" name="state" value="rejected" required />
-            Rejected
-          </label>
-      </div>
+      <label class="radio-lable">
+        <input type="radio" name="state" value="fulfilled" required />
+        Fulfilled
+      </label>
+      <label>
+        <input type="radio" name="state" value="rejected" required />
+        Rejected
+      </label>
     </fieldset>
 
     <button class="form-btn" type="submit">Create notification</button>
   </form>
 
-  <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
-  <script src="./js/2-snackbar.js" defer></script>
+  <script type="module" src="./js/2-snackbar.js"></script>
 </body>
 </html>
